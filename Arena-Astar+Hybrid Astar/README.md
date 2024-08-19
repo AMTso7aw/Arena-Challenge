@@ -22,6 +22,9 @@ Hybrid Astar相关文件：codegenPathPlanner.m Policy.m
 ## 3.强化学习
 不建议用强化学习，周围没有一个同学能训练出来，都不收敛
 
+## 4.配置文件
+参见Arena Challenge简介 7
+
 # Arena Challenge简介
 Arena Challenge是一个由Matlab代码编写的仿真环境。主要要求挑战者编写Matlab代码控制小车在一个地图环境中从起点运行至终点，地图中随机放置着障碍物(见下图）。小车是一个unicycle的动力系统（见下文解释），并装有“雷达”探测器，可探测前方障碍物情况。最终的成绩由小车到达终点的时间以及小车是否撞上障碍物等情况综合评估而得。
 
