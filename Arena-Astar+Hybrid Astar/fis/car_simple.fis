@@ -1,0 +1,63 @@
+[System]
+Name='car_simple'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=2
+NumRules=11
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='angle'
+Range=[-3.14 3.14]
+NumMFs=5
+MF1='straight':'trimf',[-0.05 0 0.05]
+MF2='right_small':'trimf',[-0.5 -0.25 0]
+MF3='left_small':'trimf',[0 0.25 0.5]
+MF4='right_large':'linzmf',[-3.14 -0.5]
+MF5='left_large':'linsmf',[0.5 3.14]
+
+[Input2]
+Name='collide'
+Range=[0 10]
+NumMFs=2
+MF1='not_collide':'linzmf',[0 0.4]
+MF2='collide':'linsmf',[0.9 1]
+
+[Output1]
+Name='u'
+Range=[-1 1]
+NumMFs=6
+MF1='forward_tini':'trimf',[0 0.01 0.02]
+MF2='forward_slow':'trimf',[0.4 0.5 0.6]
+MF3='forward_fast':'linsmf',[0.95 1]
+MF4='back_tini':'trimf',[-0.02 -0.01 0]
+MF5='back_slow':'trimf',[-0.6 -0.5 -0.4]
+MF6='back_fast':'linzmf',[-1 -0.95]
+
+[Output2]
+Name='v'
+Range=[-0.5 0.5]
+NumMFs=5
+MF1='right_fast':'linzmf',[-0.5 -0.25]
+MF2='straight':'trimf',[-1e-09 0 1e-09]
+MF3='left_fast':'linsmf',[0.25 0.5]
+MF4='right_slow':'trimf',[-0.3 -0.15 -0.05]
+MF5='left_slow':'trimf',[0.05 0.15 0.3]
+
+[Rules]
+1 1, 3 2 (1) : 1
+2 1, 2 4 (1) : 1
+3 1, 2 5 (1) : 1
+3 1, 2 5 (1) : 1
+4 1, 1 1 (1) : 1
+5 1, 1 3 (1) : 1
+5 1, 1 3 (1) : 1
+2 2, 6 3 (1) : 1
+3 2, 6 1 (1) : 1
+4 2, 6 3 (1) : 1
+5 2, 6 1 (1) : 1
