@@ -47,28 +47,39 @@ map         	%全局地图
 ## 5. 设计控制策略
 挑战者需要设计并提交一个Policy类文件，主要完成action函数。action函数传入参数为observation，传出action。仿真器会在特点的时间间隔调用action，依据挑战者设计的策略得到action，即控制量[u,v]，从而控制小车。
 ```
-classdef Policy < handle        function action=action(self,observation)            if observation.collide                action=[-10,rand(1)-0.5];            else                action=[10,rand(1)-0.5];            end        end
+classdef Policy < handle
+        function action=action(self,observation)
+            if observation.collide
+                action=[-10,rand(1)-0.5];
+            else
+                action=[10,rand(1)-0.5];
+            end
+        end
 end
 ```
 
 ## 6. Main函数
 以下是Main函数的基本代码，main读取系统配置文件对仿真环境进行配置，之后进入仿真循环。在循环中，仿真器对Arena Challenge进行物理仿真，计算出小车位置和状态，是否发生碰撞等信息。并且每一次都用挑战者设计控制策略，然后把控制策略作用于小车的控制中。
 ```
-env = Env('sys.ini');   %读取系统配置文件policy=Policy();if (env.succeed)    observation = env.reset();    while 1        env.render();        action=policy.action(observation); %调用挑战者的控制策略        [observation,done,info]=env.step(action); %物理仿真        disp(info);        if(done)            break;        end        wait(100);    endend```
+env = Env('sys.ini');   %读取系统配置文件
+policy=Policy();
+if (env.succeed)
+    observation = env.reset();
+    while 1
+        env.render();
+        action=policy.action(observation); %调用挑战者的控制策略
+        [observation,done,info]=env.step(action); %物理仿真
+        disp(info);
+        if(done)
+            break;
+        end
+        wait(100);
+    end
+end
+```
 
 ## 7. 仿真配置文件sys.ini
 为了方便挑战者进行测试，挑战者可以通过仿真配置文件sys.ini，进行相应配置。例如配置小车的起始和终止点，小车控制饱和范围，是否录制游戏运行过程等。具体见该文件。
 
 ## 8. 挑战模式
 在sys.ini中，把globalview设置为1，挑战者就可以在开始时从observation中获取全局地图信息；如把globalview设置为0，挑战者就只在每次系统刷新时从observation中获取传感器获得的局部地图信息；
-
-
-# 代码提交
-请以队伍的形式登录以下网站注册并提交Policy类代码
-
-<http://www.rayliable.net/manage/account/login>
-
-# Leader Board(排名榜)
-<http://www.rayliable.net/manage/item/ranking>
-
-
