@@ -3,6 +3,8 @@
 
 Global Planner根据局部地图生成路径，Local Planner根据生成的路径生成控制参数
 
+相关文件：Policy.m codegenPathPlanner.m
+
 原项目：https://gitee.com/coralab/ic-challenge/tree/master/Arena
 
 # 私货
@@ -13,7 +15,7 @@ Global Planner根据局部地图生成路径，Local Planner根据生成的路�
 ## 2.检测数值
 障碍检测值为1
 
-其他小车检测值在2及以上
+其他小车检测值在2及以上,可以定期将这些位置的值附0以防卡住
 
 地图没有边界，自己写算法时建议加上，赋值为1即可
 
