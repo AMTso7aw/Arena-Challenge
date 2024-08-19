@@ -1,4 +1,5 @@
-# 本控制方案使用Hybrid Astar作为Global Planner，使用TEB作为Local Planner；
+# 控制方案
+本控制方案使用Hybrid Astar作为Global Planner，使用TEB作为Local Planner
 原项目：https://gitee.com/coralab/ic-challenge/tree/master/Arena
 以下是题目简介
 
