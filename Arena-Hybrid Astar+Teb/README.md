@@ -22,6 +22,9 @@ Global Planner根据局部地图生成路径，Local Planner根据生成的路�
 ## 3.强化学习
 不建议用强化学习，周围没有一个同学能训练出来，都不收敛
 
+## 4.配置文件
+参见Arena Challenge简介 7
+
 # Arena Challenge简介
 Arena Challenge是一个由Matlab代码编写的仿真环境。主要要求挑战者编写Matlab代码控制小车在一个地图环境中从起点运行至终点，地图中随机放置着障碍物(见下图）。小车是一个unicycle的动力系统（见下文解释），并装有“雷达”探测器，可探测前方障碍物情况。最终的成绩由小车到达终点的时间以及小车是否撞上障碍物等情况综合评估而得。
 
@@ -104,6 +107,54 @@ end
 
 ## 7. 仿真配置文件sys.ini
 为了方便挑战者进行测试，挑战者可以通过仿真配置文件sys.ini，进行相应配置。例如配置小车的起始和终止点，小车控制饱和范围，是否录制游戏运行过程等。具体见该文件。
+
+```
+
+[StartPos]                    % 起点位置与角度
+x   =  2  
+y   =  3
+heading = 0.835
+
+[EndPos]                      % 终点位置
+x   = 42                      
+y   = 49
+
+[Map]
+random=0                      % set if the map is generated randomly
+w=50                          % 地图宽度
+h=50                          % 地图高度
+name='a2map'                  % 地图名称，参考maps文件夹
+
+
+[RangeFinder]
+scanRange=8                   % 扫描距离
+scanAngle=0.58                % 扫描角度
+
+[Agent]
+usat=1                        % 线速度上下限：[-usat, usat]
+vsat=0.5                      % 角速度上下限：[-vsat, vsat]
+
+[System]
+tend=150
+score=10000
+scoreTimes=1.5                % used for calculate rewardTime
+collideDeducts=3              % score deduction if collision occurs
+collidewithAgentDeducts=10    % score deduction if collision with smartAgents occurs
+obDeducts=2                   % score deduction if  agent move outside of screen
+timeoutDeducts=2              % score deduction if  current time >rewardTime
+st=0.3                        % simulator step 每过st（单位：秒）时间更新一次
+showViewer=1                  % set if show the viewer 
+render_st=0.3
+
+record=0                      % set if a movie is recorded
+recordfile='arena'            % record a movie to the file
+frameRate=10                  % movie framerate
+
+globalview=0                  % set if global view is provided
+
+smartAgent=0                  % 其他障碍小车个数
+
+```
 
 ## 8. 挑战模式
 在sys.ini中，把globalview设置为1，挑战者就可以在开始时从observation中获取全局地图信息；如把globalview设置为0，挑战者就只在每次系统刷新时从observation中获取传感器获得的局部地图信息；
