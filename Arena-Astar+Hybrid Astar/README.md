@@ -1,6 +1,10 @@
 # 方案
 本方案使用Astar或Hybrid Astar生成路径，根据unicycle的动力系统方程反解控制参数u,v
 
+Astar相关文件：Astar_frl.m Policy.m
+
+Hybrid Astar相关文件：codegenPathPlanner.m Policy.m
+
 原项目：https://gitee.com/coralab/ic-challenge/tree/master/Arena
 
 # 私货
