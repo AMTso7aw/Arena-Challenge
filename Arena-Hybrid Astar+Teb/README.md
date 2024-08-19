@@ -1,5 +1,5 @@
-# 控制方案
-本控制方案使用Hybrid Astar作为Global Planner，使用TEB作为Local Planner
+# 方案
+本方案使用Hybrid Astar作为Global Planner，使用TEB作为Local Planner
 
 Global Planner根据局部地图生成路径，Local Planner根据生成的路径生成控制参数
 
