@@ -1,2 +1,2 @@
 # Arena-Challenge
-HUST AIA Intelligent Control Course Design
+[HUST AIA Intelligent Control](https://gitee.com/coralab/ic-challenge)
